@@ -9,7 +9,7 @@ mainString = "Hello, world!"
 def main():
     return mainString
 
-@app.route('/post')
+@app.route('/post', methods=["POST"])
 def postTest():
 	global mainString
 	mainString = request.form.get("data")
