@@ -11,7 +11,7 @@ def main():
 
 @app.route('/post', methods=["POST"])
 def postTest():
-	return str(request.form.get("data"))
+	return str(request.get_json()["data"])
 
 def run():
 	app.run(host='0.0.0.0', port=900)
