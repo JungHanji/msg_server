@@ -11,7 +11,7 @@ def main():
 
 @app.route('/post', methods=["GET", "POST"])
 def postTest():
-	print("[POST] posted" + request.get_data())
+	print("[POST] posted" + request.get_data().decode())
 	return "ok"
 
 def run():
