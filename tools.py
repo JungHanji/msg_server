@@ -52,8 +52,8 @@ def getlJSTRING(req):
     return str(list(req.form.to_dict().items())[0][0])
 
 def getDictFromJSON(jsonstr):
-    x = jsonstr[1:-1].split(":")
-    return {x[0] : x[1]}
+    x = jsonstr.split(":")
+    return {x[0][1:-2] : x[1][1:-1]}
 
 
 def parseDLinesWhile(path, rightKey):
