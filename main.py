@@ -11,8 +11,9 @@ def main():
 
 @app.route('/post', methods=["GET", "POST"])
 def postTest():
-	print("[POST] posted" + str(request.form))
-	return "[POST] posted: " + str(request.form)
+	jsonstring = str(request.form.to_dict().items[0])
+	print("[POST] posted" + jsonstring)
+	return "[POST] posted: " + jsonstring
 
 def run():
 	app.run(host='0.0.0.0', port=900)
