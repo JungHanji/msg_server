@@ -24,6 +24,7 @@ def regClient():
         return "Client added"
     else:
         return "Client alredy exist"
+    return "Bad request"
 
 @app.route("/newMsg", methods=["POST"])
 def newMsg():
