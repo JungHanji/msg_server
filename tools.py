@@ -53,7 +53,7 @@ def getlJSTRING(req):
 
 def getDictFromJSON(jsonstr):
     x = jsonstr.split(":")
-    return {x[0][1:-2] : x[1][1:-1]}
+    return {x[0][2:-2] : x[1][2:-2]}
 
 
 def parseDLinesWhile(path, rightKey):
