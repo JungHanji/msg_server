@@ -23,7 +23,7 @@ def clearFile(name):
         f.write("")
 
 def writeToFile(name, text, end=''):
-    with open(name, "w", encoding="utf-8") as f:
+    with open(name, "w+", encoding="utf-8") as f:
         f.write(text + end)
 
 def createFile(path):
