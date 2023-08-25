@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, json
 from threading import Thread
 
 app = Flask(__name__)
@@ -12,7 +12,7 @@ def main():
 @app.route('/post', methods=["GET", "POST"])
 def postTest():
 	print("[POST] posted" + request.json)
-	return "ok"
+	return json.loads(request.data)
 
 def run():
 	app.run(host='0.0.0.0', port=900)
