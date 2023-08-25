@@ -14,7 +14,7 @@ if(not isExist(MSGS_FILE)): createFile(MSGS_FILE)
 def main():
     return 'Nothing here'
 
-@app.route('/reg', methods=["GET", "POST"])
+@app.route('/reg', methods=["POST"])
 def regClient():
     jdict = getDictFromJSON(getlJSTRING(request))
     print(jdict)
@@ -25,7 +25,7 @@ def regClient():
     else:
         return "Client alredy exist"
 
-@app.route("/newMsg", methods=["GET", "POST"])
+@app.route("/newMsg", methods=["POST"])
 def newMsg():
     jdict = getDictFromJSON(getlJSTRING(request))
     
@@ -38,7 +38,7 @@ def newMsg():
         return f"[Messege posted] : {msg}"
 
 
-@app.route("/getMsg", methods=["GET", "POST"])
+@app.route("/getMsg", methods=["POST"])
 def getMsg():
     jdict = getDictFromJSON(getlJSTRING(request))
     name = jdict["name"]
@@ -47,7 +47,7 @@ def getMsg():
     else:
         return "No messeges to get"
 
-@app.route("/post", methods=["GET", "POST"])
+@app.route("/post", methods=["POST"])
 def postTest():
 	jsonstring = getDictFromJSON(getlJSTRING(request))
 	print("[POST] posted" + str(jsonstring))
