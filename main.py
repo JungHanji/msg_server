@@ -12,7 +12,7 @@ def main():
 @app.route('/post', methods=["GET", "POST"])
 def postTest():
 	print("[POST] posted" + request.data.decode())
-	return json.loads(request.data)
+	return "[POST] posted" + request.data.decode()
 
 def run():
 	app.run(host='0.0.0.0', port=900)
