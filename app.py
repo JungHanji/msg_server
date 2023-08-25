@@ -47,10 +47,8 @@ def getMsg():
     else:
         return 'No messeges to get'
 
-'''
 @app.route('/post', methods=["GET", "POST"])
 def postTest():
-	jsonstring = str(list(request.form.to_dict().items())[0][0])
-	print("[POST] posted" + jsonstring)
-	return "[POST] posted: " + jsonstring
-'''
+	jsonstring = getDictFromJSON(getlJSTRING(request))
+	print("[POST] posted" + str(jsonstring))
+	return "[POST] posted: " + str(jsonstring)
