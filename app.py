@@ -17,7 +17,7 @@ def main():
 @app.route('/reg', methods=["GET", "POST"])
 def regClient():
     jdict = getDictFromJSON(getlJSTRING(request))
-    
+    print(jdict)
     name = jdict["name"]
     if(not isLineInFile(CLIENTS_FILE, name)):
         addToFile(CLIENTS_FILE, name)
