@@ -9,9 +9,10 @@ mainString = "Hello, world!"
 def main():
     return mainString
 
-@app.route('/post', methods=["POST"])
+@app.route('/post', methods=["GET", "POST"])
 def postTest():
-	return str(request.data.decode())
+	print("[POST] posted" + request.get_data())
+	return "ok"
 
 def run():
 	app.run(host='0.0.0.0', port=900)
@@ -23,4 +24,5 @@ def keep_alive():
 
 
 if __name__ == '__main__':
-	keep_alive()
+	run()
+	#keep_alive()
