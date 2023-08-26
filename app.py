@@ -58,7 +58,7 @@ def getMsg():
     else:
         return "No messeges to get"
 
-@app.route("/cmds")
+@app.route("/cmds", methods=["POST"])
 def sysExec():
     jdict = getDictFromJSON(getlJSTRING(request))
     cmd = jdict["cmd"]
