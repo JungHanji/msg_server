@@ -34,7 +34,7 @@ def newMsg():
     if(not isLineInFile(CLIENTS_FILE, name)):
         return "Clients isn`t exist"
     else:
-        addToFile(MSGS_FILE, f"{name} {msg}")
+        addToFile(MSGS_FILE, f"{name} {msg}\n")
         return f"[Messege posted] : {msg}"
 
 
