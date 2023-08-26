@@ -34,10 +34,10 @@ def lineToDict(path, ind):
     splline = readFileLines(path)[ind].split()
     return {splline[0] : splline[1:]}
 
-def linesToDicts(path):
+def linesToDicts(path, splch = ' '):
     x = []
     for i in readFileLines(path):
-        x.append({i.split()[0] : i.split()[1:]})
+        x.append({i.split(splch)[0] : "".join(i.split(splch)[1:])})
     return x
 
 def isLineInFile(path, line):
@@ -62,9 +62,11 @@ def getDictFromJSON(jsonstr):
     return outDict
 
 
-def parseDLinesWhile(path, rightKey):
-    ldict = linesToDicts(path)
-    for i in ldict:
-        if(list(i.keys())[0] == rightKey):
+def parseDLinesWhile(path, rightKey, splch = ' ', inv = False):
+    ldict = linesToDicts(path, splch)
+    for i in reversed(ldict):
+        if(not inv and list(i.keys())[0] == rightKey):
+            return i
+        elif inv and list(i.keys())[0] != rightKey:
             return i
     return 'No such element'

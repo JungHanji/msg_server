@@ -34,7 +34,7 @@ def newMsg():
     if(not isLineInFile(CLIENTS_FILE, name)):
         return "Clients isn`t exist"
     else:
-        addToFile(MSGS_FILE, f"{name} {msg}\n")
+        addToFile(MSGS_FILE, f"{name}:{msg}\n")
         return f"[Messege posted] : {msg}"
 
 
@@ -43,7 +43,7 @@ def getMsg():
     jdict = getDictFromJSON(getlJSTRING(request))
     name = jdict["name"]
     if(len(readFileLines(MSGS_FILE))>0):
-        return parseDLinesWhile(MSGS_FILE, name)
+        return parseDLinesWhile(MSGS_FILE, name, ':', True)
     else:
         return "No messeges to get"
 
