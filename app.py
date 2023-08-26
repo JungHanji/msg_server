@@ -52,7 +52,7 @@ def getMsg():
     jdict = getDictFromJSON(getlJSTRING(request))
     name = jdict["name"]
     if(len(readFileLines(MSGS_FILE))>0):
-        return parseDLinesWhile(MSGS_FILE, name, ':', True)
+        return str(parseDLinesWhile(MSGS_FILE, name, ':', True))[1:-1].replace('"','')
     else:
         return "No messeges to get"
 
