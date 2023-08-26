@@ -55,7 +55,7 @@ def getDictFromJSON(jsonstr):
     
     outDict = {}
 
-    x = jsonstr.split(",")
+    x = jsonstr.split(",")[:-1]
     for el in x:
         outDict[el.split(":")[0].replace('"', '')] = el.split(":")[1].replace('"', '')
 
