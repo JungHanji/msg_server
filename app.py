@@ -49,6 +49,12 @@ def getMsg():
 
 @app.route("/post", methods=["POST"])
 def postTest():
-	jsonstring = getlJSTRING(request)
-	print("[POST] posted" + jsonstring)
-	return "[POST] posted: " + jsonstring
+	jsonstring = getDictFromJSON(getlJSTRING(request))
+	print("[POST] posted" + str(jsonstring))
+	return "[POST] posted: " + str(jsonstring)
+
+@app.route("/echo", methods=["POST"])
+def echoEcho():
+    jsonstring = getlJSTRING(request)
+    print("[ECHO] echod" + jsonstring)
+    return "[ECHO] echod: " + jsonstring
