@@ -52,9 +52,25 @@ def getMsg():
     jdict = getDictFromJSON(getlJSTRING(request))
     name = jdict["name"]
     if(len(readFileLines(MSGS_FILE))>0):
-        return str(parseDLinesWhile(MSGS_FILE, name, ':', True))[1:-1].replace('"',"").replace("'",'')
+        sttr = str(parseDLinesWhile(MSGS_FILE, name, ':', True))
+        if(sttr!="No such element"): return sttr[1:-1].replace('"',"").replace("'",'')
+        else: return "No messeges to get"
     else:
         return "No messeges to get"
+
+@app.route("/cmds")
+def sysExec():
+    jdict = getDictFromJSON(getlJSTRING(request))
+    cmd = jdict["cmd"]
+    
+    if(cmd == "CLEAR_USERS"):
+        clearFile(CLIENTS_FILE)
+        return 'Successfully cleared clients'
+    elif(cmd == "CLEAR_CHAT"):
+        clearFile(MSGS_FILE)
+        return 'Successfully cleared chat'
+
+    return f"Bad command '{cmd}'"
 
 @app.route("/post", methods=["POST"])
 def postTest():
