@@ -14,7 +14,7 @@ def readFileLines(name):
     with open(name, encoding="utf-8") as f:
         return f.read().splitlines()
 
-def addToFile(name, line, end=''):
+def addToFile(name, line, end='\n'):
     with open(name, "a", encoding="utf-8") as f:
         f.write(line + end)
 
