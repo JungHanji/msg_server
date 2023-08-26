@@ -26,6 +26,14 @@ def writeToFile(name, text, end=''):
     with open(name, "w+", encoding="utf-8") as f:
         f.write(text + end)
 
+def delFromFile(path, line):
+    lines = readFileLines(path)
+    nlines = []
+    for l in lines:
+        if l != line:
+            nlines.append(l)
+    writeToFile(path, "\n".join(nlines))
+
 def createFile(path):
     writeToFile(path, "")
 

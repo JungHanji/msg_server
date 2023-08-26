@@ -14,16 +14,25 @@ if(not isExist(MSGS_FILE)): createFile(MSGS_FILE)
 def main():
     return 'Nothing here'
 
-@app.route('/reg', methods=["POST"])
+@app.route('/client', methods=["POST"])
 def regClient():
     jdict = getDictFromJSON(getlJSTRING(request))
-    print(jdict)
     name = jdict["name"]
-    if(not isLineInFile(CLIENTS_FILE, name)):
-        addToFile(CLIENTS_FILE, name)
-        return "Client added"
+    mtype = jdict["type"]
+    if(mtype == "reg"):
+        if(not isLineInFile(CLIENTS_FILE, name)):
+            addToFile(CLIENTS_FILE, name)
+            return "Client added"
+        else:
+            return "Client alredy exist"
+    elif mtype == "del":
+        if(isLineInFile(CLIENTS_FILE, name)):
+            delFromFile(CLIENTS_FILE, name)
+            return "Client deleted"
+        else:
+            return "Client isn`t exist"
     else:
-        return "Client alredy exist"
+        return f"Bad type: '{mtype}'"
 
 @app.route("/newMsg", methods=["POST"])
 def newMsg():
@@ -32,7 +41,7 @@ def newMsg():
     name = jdict["name"]
     msg = jdict["msg"]
     if(not isLineInFile(CLIENTS_FILE, name)):
-        return "Clients isn`t exist"
+        return "Client isn`t exist"
     else:
         addToFile(MSGS_FILE, f"{name}:{msg}")
         return f"[Messege posted] : {msg}"
@@ -50,11 +59,9 @@ def getMsg():
 @app.route("/post", methods=["POST"])
 def postTest():
 	jsonstring = getDictFromJSON(getlJSTRING(request))
-	print("[POST] posted" + str(jsonstring))
 	return "[POST] posted: " + str(jsonstring)
 
 @app.route("/echo", methods=["POST"])
 def echoEcho():
     jsonstring = getlJSTRING(request)
-    print("[ECHO] echod" + jsonstring)
     return "[ECHO] echod: " + jsonstring
