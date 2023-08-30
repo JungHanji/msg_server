@@ -16,8 +16,8 @@ def main():
 
 @app.route('/client', methods=["POST"])
 def regClient():
-    jdict = getDictFromJSON(getlJSTRING(request))
-    name = convertFromWstring(jdict["name"])
+    jdict = getDictFromJSON(convertFromWstring(getlJSTRING(request)))
+    name = jdict["name"]
     mtype = jdict["type"]
     if(mtype == "reg"):
         if(not isLineInFile(CLIENTS_FILE, name)):
@@ -36,10 +36,10 @@ def regClient():
 
 @app.route("/newMsg", methods=["POST"])
 def newMsg():
-    jdict = getDictFromJSON(getlJSTRING(request))
+    jdict = getDictFromJSON(convertFromWstring(getlJSTRING(request)))
     
-    name = convertFromWstring(jdict["name"])
-    msg = convertFromWstring(jdict["msg"])
+    name = jdict["name"]
+    msg = jdict["msg"]
     if(not isLineInFile(CLIENTS_FILE, name)):
         return "Client isn`t exist"
     else:
@@ -49,8 +49,8 @@ def newMsg():
 
 @app.route("/getMsg", methods=["POST"])
 def getMsg():
-    jdict = getDictFromJSON(getlJSTRING(request))
-    name = convertFromWstring(jdict["name"])
+    jdict = getDictFromJSON(convertFromWstring(getlJSTRING(request)))
+    name = jdict["name"]
     if(len(readFileLines(MSGS_FILE))>0):
         sttr = str(parseDLinesWhile(MSGS_FILE, name, ':', True))
         if(sttr!="No such element"): return convertToWstring(sttr[1:-1].replace('"',"").replace("'",''))
@@ -60,7 +60,7 @@ def getMsg():
 
 @app.route("/cmds", methods=["POST"])
 def sysExec():
-    jdict = getDictFromJSON(getlJSTRING(request))
+    jdict = getDictFromJSON(convertFromWstring(getlJSTRING(request)))
     cmd = jdict["cmd"]
     
     if(cmd == "CLEAR_USERS"):
