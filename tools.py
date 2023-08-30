@@ -78,3 +78,9 @@ def parseDLinesWhile(path, rightKey, splch = ' ', inv = False):
         elif inv and list(i.keys())[0] != rightKey:
             return i
     return 'No such element'
+
+def convertFromWstring(wstring):
+    return "".join([chr(int(i)) for i in wstring.split()])
+
+def convertToWstring(string):
+    return " ".join([str(ord(i)) for i in string.split()])

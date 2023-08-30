@@ -17,7 +17,7 @@ def main():
 @app.route('/client', methods=["POST"])
 def regClient():
     jdict = getDictFromJSON(getlJSTRING(request))
-    name = jdict["name"]
+    name = convertFromWstring(jdict["name"])
     mtype = jdict["type"]
     if(mtype == "reg"):
         if(not isLineInFile(CLIENTS_FILE, name)):
@@ -38,22 +38,22 @@ def regClient():
 def newMsg():
     jdict = getDictFromJSON(getlJSTRING(request))
     
-    name = jdict["name"]
-    msg = jdict["msg"]
+    name = convertFromWstring(jdict["name"])
+    msg = convertFromWstring(jdict["msg"])
     if(not isLineInFile(CLIENTS_FILE, name)):
         return "Client isn`t exist"
     else:
         addToFile(MSGS_FILE, f"{name}:{msg}")
-        return f"[Messege posted] : {msg}"
+        return f"[Messege posted] : {convertToWstring(msg)}"
 
 
 @app.route("/getMsg", methods=["POST"])
 def getMsg():
     jdict = getDictFromJSON(getlJSTRING(request))
-    name = jdict["name"]
+    name = convertFromWstring(jdict["name"])
     if(len(readFileLines(MSGS_FILE))>0):
         sttr = str(parseDLinesWhile(MSGS_FILE, name, ':', True))
-        if(sttr!="No such element"): return sttr[1:-1].replace('"',"").replace("'",'')
+        if(sttr!="No such element"): return convertToWstring(sttr[1:-1].replace('"',"").replace("'",''))
         else: return "No messeges to get"
     else:
         return "No messeges to get"
