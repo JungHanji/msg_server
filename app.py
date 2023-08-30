@@ -17,15 +17,16 @@ def main():
 @app.route('/client', methods=["POST"])
 def regClient():
     jdict = getDictFromJSON(convertFromWstring(getlJSTRING(request)))
-    name = jdict["name"]
     mtype = jdict["type"]
     if(mtype == "reg"):
+        name = jdict["name"]
         if(not isLineInFile(CLIENTS_FILE, name)):
             addToFile(CLIENTS_FILE, name)
             return "Client added"
         else:
             return "Client alredy exist"
     elif mtype == "del":
+        name = jdict["name"]
         if(isLineInFile(CLIENTS_FILE, name)):
             delFromFile(CLIENTS_FILE, name)
             return "Client deleted"
