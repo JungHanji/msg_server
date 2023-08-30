@@ -83,4 +83,4 @@ def convertFromWstring(wstring):
     return "".join([chr(int(i)) for i in wstring.split()])
 
 def convertToWstring(string):
-    return " ".join([str(ord(i)) for i in string.split()])
+    return " ".join([str(ord(i)) for i in string])
