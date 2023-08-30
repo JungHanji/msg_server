@@ -31,6 +31,8 @@ def regClient():
             return "Client deleted"
         else:
             return "Client isn`t exist"
+    elif mtype=="getAll":
+        return " ".join(readFileLines(CLIENTS_FILE))
     else:
         return f"Bad type: '{mtype}'"
 
